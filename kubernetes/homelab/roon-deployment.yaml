@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: roon
+  name: roon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: roon
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: roon
+    spec:
+      hostNetwork: true
+      hostname: docker-roonserver
+      containers:
+        - image: steefdebruijn/docker-roonserver
+          name: roon
+          securityContext:
+              privileged: true
+          #command: ["/bin/bash", "-c"]
+          #args: ["sleep 5; exit 1"]
+          ports:
+            - containerPort: 9101
+              protocol: TCP
+            - containerPort: 9102
+              protocol: TCP
+            - containerPort: 9103
+              protocol: TCP
+            - containerPort: 9104
+              protocol: TCP
+            - containerPort: 9105
+              protocol: TCP
+            - containerPort: 9106
+              protocol: TCP
+            - containerPort: 9107
+              protocol: TCP
+            - containerPort: 9108
+              protocol: TCP
+            - containerPort: 9109
+              protocol: TCP
+            - containerPort: 9110
+              protocol: TCP
+            - containerPort: 9003
+              protocol: UDP
+          volumeMounts:
+          - name: roon-app
+            mountPath: /app
+          - name: roon-data
+            mountPath: /data
+          - name: roon-backup
+            mountPath: /backup
+      volumes:
+        - name: roon-app
+          hostPath:
+            path: /home/napauleon/roon/app
+        - name: roon-data
+          hostPath:
+            path: /home/napauleon/roon/data
+        - name: roon-backup
+          hostPath:
+            path: /mnt/roon_backup/
