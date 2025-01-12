@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: roon
+  name: roon
+spec:
+  ports:
+  - port: 9330
+    protocol: TCP
+    targetPort: 9330
+    name: display
+  - port: 9332
+    protocol: TCP
+    targetPort: 9332
+    name: connect
+  - port: 58458
+    protocol: TCP
+    targetPort: 58458
+    name: devices
+  - port: 9003
+    protocol: UDP
+    targetPort: 9003
+    name: discovery
+  selector:
+    app: roon
+  type: LoadBalancer

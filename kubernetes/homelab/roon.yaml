@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: roon
+  name: roon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: roon
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: roon
+    spec:
+      containers:
+        - image: steefdebruijn/docker-roonserver
+          name: roon
+          #command: ["/bin/bash", "-c"]
+          #args: ["sleep 5; exit 1"]
+          volumeMounts:
+            - name: backup-vol
+              mountPath: /backup
+      volumes:
+        - name: backup-vol
+          hostPath:
+            path: /mnt/roon_backup/
+            type: DirectoryOrCreate
