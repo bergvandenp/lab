@@ -1,3 +1,4 @@
+replicaCount: 2
 persistence:
   - name: homarr-config
     # -- Enable homarr-config persistent storage
