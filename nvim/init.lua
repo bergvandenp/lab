@@ -29,8 +29,8 @@ require("lazy").setup({
 		-- import / override with your own plugins
 		{ import = "plugins" },
 		"folke/tokyonight.nvim",
-		"spaceduck-theme/nvim",
-		{ import = "lazyvim.plugins.extras.lang.markdown" },
+		-- https://github.com/EdenEast/nightfox.nvim
+		"EdenEast/nightfox.nvim",
 		-- add your plugins here
 	},
 	-- Configure any other settings here. See the documentation for more details.
@@ -41,6 +41,15 @@ require("lazy").setup({
 })
 require("config/autocomds")
 require("config/toggle-diagnostics")
+--
+-- kotlin lsp (from fork)
+require("lspconfig").kotlin_language_server.setup({
+	cmd = {
+		os.getenv("HOME") .. "/.lsp/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
+	},
+	capabilities = capabilities,
+})
+-- vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
@@ -48,7 +57,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("spaceduck")
+vim.cmd.colorscheme("nightfox")
 
 vim.opt.conceallevel = 2
 
