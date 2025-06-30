@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-secret
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: nextcloud_db
+  POSTGRES_USER: nextcloud_user
+  POSTGRES_PASSWORD: $d$1ekjTyu3gw3BDN#mexT9aj
