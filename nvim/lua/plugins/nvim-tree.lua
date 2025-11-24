@@ -21,12 +21,19 @@ return {
 	},
 	config = function()
 		require("nvim-tree").setup({
+			actions = {
+				open_file = {
+					quit_on_open = false,
+				},
+			},
+
 			view = {
+				preserve_window_proportions = true,
 				float = {
-					open_win_config = {
-						width = 100,
-					},
-					enable = true,
+					--open_win_config = {
+					--   width = 100,
+					-- },
+					enable = false,
 					quit_on_focus_loss = true,
 				},
 			},
