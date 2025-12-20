@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "garmin": {
+      "command": "uvx",
+      "args": [
+        "--python",
+        "3.12",
+        "--from",
+        "/Users/paulvandenberg/Projecten/12.01_Tech_studie/garmin-mcp/garmin_mcp",
+        "garmin-mcp"
+      ],
+      "env": {
+        "GARMIN_EMAIL": "",
+        "GARMIN_PASSWORD": ""
+      }
+    }
+  }
+}
